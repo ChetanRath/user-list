@@ -1,1 +1,1 @@
-export type GenericType = any
+export type GenericType = any;

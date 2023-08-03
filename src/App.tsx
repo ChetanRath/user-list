@@ -1,15 +1,15 @@
-import { useState } from "react"
+import { useState } from 'react';
 
-import Button from '@mui/material/Button'
-import Modal from '@mui/material/Modal'
-import Box from '@mui/material/Box'
-import { AddUserForm } from "AddUser"
+import Button from '@mui/material/Button';
+import Modal from '@mui/material/Modal';
+import Box from '@mui/material/Box';
+import { AddUserForm } from 'AddUser';
 
 function App() {
-  const [openModal, setModalOpen] = useState<boolean>(false)
-  
-  const handleClose = () => setModalOpen(false)
-  const handleAddUserClick = () => setModalOpen(true)
+  const [openModal, setModalOpen] = useState<boolean>(false);
+
+  const handleClose = () => setModalOpen(false);
+  const handleAddUserClick = () => setModalOpen(true);
 
   return (
     <div>
@@ -30,7 +30,7 @@ function App() {
         >
         </Box>
       </Modal> */}
-      <AddUserForm/>
+      <AddUserForm />
     </div>
   );
 }

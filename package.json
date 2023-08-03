@@ -8,6 +8,7 @@
     "serve": "vite preview",
     "test": "jest",
     "lint": "eslint src --max-warnings=0",
+    "lint:fix": "eslint src/ --fix",
     "typecheck": "tsc --project tsconfig.json --noEmit"
   },
   "dependencies": {
@@ -17,8 +18,7 @@
     "prettier": "^3.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-hook-form": "^7.45.2",
-    "yup": "^1.2.0"
+    "react-hook-form": "^7.45.2"
   },
   "devDependencies": {
     "@babel/core": "^7.18.6",
