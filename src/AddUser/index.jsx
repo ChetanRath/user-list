@@ -1,6 +1,0 @@
-
-function UserForm() {
-  <form>
-
-  </form>
-}

@@ -3,6 +3,7 @@ import { useState } from "react"
 import Button from '@mui/material/Button'
 import Modal from '@mui/material/Modal'
 import Box from '@mui/material/Box'
+import { AddUserForm } from "AddUser"
 
 function App() {
   const [openModal, setModalOpen] = useState<boolean>(false)
@@ -12,7 +13,7 @@ function App() {
 
   return (
     <div>
-      <Button onClick={handleAddUserClick} variant="contained">Add User</Button>
+      {/* <Button onClick={handleAddUserClick} variant="contained">Add User</Button>
         <Modal
           open={openModal}
           onClose={handleClose}
@@ -27,9 +28,9 @@ function App() {
             transform: 'translate(-50%, -50%)',
           }}
         >
-          {/* <AddUserForm/> */}
         </Box>
-      </Modal>
+      </Modal> */}
+      <AddUserForm/>
     </div>
   );
 }
