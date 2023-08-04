@@ -1,20 +1,11 @@
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { AddUserFormProps, FormInputValues } from './types';
 import useAsync from 'hooks/useAsync';
 import { userApi } from 'utils/api';
-
-// const defaultValues: FormInputValues = {
-//   email: '',
-//   password: '',
-//   firstName: '',
-//   lastName: '',
-// };
+import { AddUserFormProps, FormInputValues } from './types';
 
 const useAddUserController = ({ closeModal, addNewUser }: AddUserFormProps) => {
-  const { handleSubmit, control, getValues, watch, formState } = useForm<FormInputValues>({
-    // defaultValues,
-  });
+  const { handleSubmit, control, getValues, watch, formState } = useForm<FormInputValues>();
   const { isLoading, res: newUserId, asyncFunc: submitForm } = useAsync(userApi.addUser);
   watch();
 
@@ -46,9 +37,9 @@ const useAddUserController = ({ closeModal, addNewUser }: AddUserFormProps) => {
     submitHandler,
     addUserDisabled,
     handleSubmit,
-    control,
     getValues,
     watch,
+    control,
     formState,
     isLoading,
     newUserId,
