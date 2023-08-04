@@ -12,7 +12,7 @@ const useAddUserController = () => {
   const { handleSubmit, control, getValues, watch, formState } = useForm<FormInputValues>({
     defaultValues,
   });
-  const { isLoading, err, res: newUser, asyncFunc: submitForm } = useAsync(userApi.addUser);
+  const { isLoading, res: newUser, asyncFunc: submitForm } = useAsync(userApi.addUser);
   watch();
 
   const submitHandler = () => {

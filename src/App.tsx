@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import { AddUserForm } from 'AddUser';
+import { UserList } from './UserList';
 
 function App() {
   const [openModal, setModalOpen] = useState<boolean>(false);
@@ -16,6 +17,7 @@ function App() {
       <Button onClick={handleAddUserClick} variant={'contained'}>
         {'Add User'}
       </Button>
+      <UserList />
       <Modal
         open={openModal}
         onClose={handleClose}
