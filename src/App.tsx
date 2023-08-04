@@ -1,23 +1,27 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import { AddUserForm } from 'AddUser';
 import { UserList } from './UserList';
+import { UserType } from 'UserList/types';
 
 function App() {
   const [openModal, setModalOpen] = useState<boolean>(false);
+  const [newUser, setNewUser] = useState<UserType | null>(null);
 
-  const handleClose = () => setModalOpen(false);
+  const handleClose = useCallback(() => setModalOpen(false), []);
   const handleAddUserClick = () => setModalOpen(true);
+
+  const addNewUser = useCallback((user: UserType) => setNewUser(user), []);
 
   return (
     <div>
       <Button onClick={handleAddUserClick} variant={'contained'}>
         {'Add User'}
       </Button>
-      <UserList />
+      <UserList newUser={newUser} />
       <Modal
         open={openModal}
         onClose={handleClose}
@@ -36,7 +40,7 @@ function App() {
             boxShadow: 24,
           }}
         >
-          <AddUserForm />
+          <AddUserForm addNewUser={addNewUser} closeModal={handleClose} />
         </Box>
       </Modal>
     </div>

@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -8,16 +7,12 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { CircularProgress } from '@mui/material';
 
-import useAsyncFn from 'hooks/useAsync';
-import { userApi } from 'utils/api';
 import tableData from './tableData';
-import { UserType, ColumnType } from './types';
+import { UserType, ColumnType, UserListProps } from './types';
+import useUserListController from './userListController';
 
-export const UserList = () => {
-  const { isLoading, res: userList, err, asyncFunc: getUsers } = useAsyncFn(userApi.fetchUserList);
-  useEffect(() => {
-    getUsers();
-  }, []);
+export const UserList = ({ newUser }: UserListProps) => {
+  const { isLoading, userListState } = useUserListController(newUser);
 
   return (
     <TableContainer component={Paper}>
@@ -27,7 +22,7 @@ export const UserList = () => {
           size={80}
         />
       )}
-      {!isLoading && userList && (
+      {!isLoading && userListState && (
         <Table sx={{ width: '80%', margin: 'auto' }} aria-label={'simple table'}>
           <TableHead>
             <TableRow>
@@ -37,7 +32,7 @@ export const UserList = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {userList.map((user: UserType) => (
+            {userListState.map((user: UserType) => (
               <TableRow key={user.id}>
                 {tableData().map(columnData => (
                   <TableCell key={columnData.id}>{user[columnData.id as keyof UserType]}</TableCell>

@@ -1,18 +1,21 @@
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { FormInputValues } from './types';
+import { AddUserFormProps, FormInputValues } from './types';
 import useAsync from 'hooks/useAsync';
 import { userApi } from 'utils/api';
 
-const defaultValues: FormInputValues = {
-  email: '',
-  password: '',
-};
+// const defaultValues: FormInputValues = {
+//   email: '',
+//   password: '',
+//   firstName: '',
+//   lastName: '',
+// };
 
-const useAddUserController = () => {
+const useAddUserController = ({ closeModal, addNewUser }: AddUserFormProps) => {
   const { handleSubmit, control, getValues, watch, formState } = useForm<FormInputValues>({
-    defaultValues,
+    // defaultValues,
   });
-  const { isLoading, res: newUser, asyncFunc: submitForm } = useAsync(userApi.addUser);
+  const { isLoading, res: newUserId, asyncFunc: submitForm } = useAsync(userApi.addUser);
   watch();
 
   const submitHandler = () => {
@@ -20,9 +23,18 @@ const useAddUserController = () => {
     submitForm(values);
   };
 
-  // useEffect(() => {
-  //   if (newUser) addUserToList(newUser)
-  // }, [newUser])
+  useEffect(() => {
+    if (newUserId) {
+      const { firstName, middleName = '', lastName, email, phone } = getValues();
+      addNewUser({
+        id: newUserId,
+        name: firstName + middleName + lastName,
+        email,
+        phone,
+      });
+      closeModal();
+    }
+  }, [newUserId]);
 
   const addUserDisabled = () => {
     const values = getValues();
@@ -39,7 +51,7 @@ const useAddUserController = () => {
     watch,
     formState,
     isLoading,
-    newUser,
+    newUserId,
     submitForm,
   };
 };

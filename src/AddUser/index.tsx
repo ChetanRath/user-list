@@ -5,9 +5,13 @@ import { emailRegex, phoneNumberRegex } from 'utils/regex';
 import { Grid } from '@mui/material';
 
 import useAddUserController from './addUserController';
+import { AddUserFormProps } from './types';
 
-export const AddUserForm = () => {
-  const { submitHandler, addUserDisabled, handleSubmit, control, isLoading } = useAddUserController();
+export const AddUserForm = ({ closeModal, addNewUser }: AddUserFormProps) => {
+  const { submitHandler, addUserDisabled, handleSubmit, control, isLoading } = useAddUserController({
+    closeModal,
+    addNewUser,
+  });
 
   return (
     <>
