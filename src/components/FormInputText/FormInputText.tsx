@@ -8,7 +8,7 @@ export const FormInputText = ({ name, control, label, textFieldProps, rules }: F
       name={name}
       control={control}
       rules={rules}
-      render={({ field: { onChange, value }, fieldState: { error }, formState }) => (
+      render={({ field: { onChange, value }, fieldState: { error } }) => (
         <TextField
           helperText={error ? error.message : null}
           size={'small'}
