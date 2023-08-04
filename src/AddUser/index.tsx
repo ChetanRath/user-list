@@ -95,7 +95,7 @@ export const AddUserForm = ({ closeModal, addNewUser }: AddUserFormProps) => {
           </Grid>
           <Grid item md={6}>
             <FormInputText
-              name={'phonenumber'}
+              name={'phone'}
               control={control}
               label={'Phone Number'}
               rules={{

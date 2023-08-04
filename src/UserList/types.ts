@@ -13,3 +13,7 @@ export interface ColumnType {
 export interface UserListProps {
   newUser: UserType | null;
 }
+
+export interface HandleDelete {
+  (id: number): void;
+}

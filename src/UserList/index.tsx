@@ -5,14 +5,13 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { CircularProgress } from '@mui/material';
+import { Button, CircularProgress } from '@mui/material';
 
-import tableData from './tableData';
 import { UserType, ColumnType, UserListProps } from './types';
 import useUserListController from './userListController';
 
 export const UserList = ({ newUser }: UserListProps) => {
-  const { isLoading, userListState } = useUserListController(newUser);
+  const { isLoading, userListState, columns } = useUserListController(newUser);
 
   return (
     <TableContainer component={Paper}>
@@ -26,7 +25,7 @@ export const UserList = ({ newUser }: UserListProps) => {
         <Table sx={{ width: '80%', margin: 'auto' }} aria-label={'simple table'}>
           <TableHead>
             <TableRow>
-              {tableData().map((columnData: ColumnType) => (
+              {columns.map((columnData: ColumnType) => (
                 <TableCell key={columnData.label}> {columnData.label}</TableCell>
               ))}
             </TableRow>
@@ -34,9 +33,18 @@ export const UserList = ({ newUser }: UserListProps) => {
           <TableBody>
             {userListState.map((user: UserType) => (
               <TableRow key={user.id}>
-                {tableData().map(columnData => (
-                  <TableCell key={columnData.id}>{user[columnData.id as keyof UserType]}</TableCell>
-                ))}
+                {columns.map(columnData => {
+                  if (columnData.type === 'button' && columnData.onAction) {
+                    return (
+                      <TableCell key={columnData.id}>
+                        <Button variant={'contained'} onClick={() => columnData.onAction(user.id)}>
+                          {columnData.label}
+                        </Button>
+                      </TableCell>
+                    );
+                  }
+                  return <TableCell key={columnData.id}>{user[columnData.id as keyof UserType]}</TableCell>;
+                })}
               </TableRow>
             ))}
           </TableBody>
