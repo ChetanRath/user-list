@@ -1,5 +1,6 @@
 import Button from '@mui/material/Button';
-import CircularProgress from '@mui/material/CircularProgress'; // Add to button for loading
+import CircularProgress from '@mui/material/CircularProgress';
+import Typography from '@mui/material/Typography';
 import { FormInputText } from 'components/FormInputText/FormInputText';
 import { emailRegex, phoneNumberRegex } from 'utils/regex';
 import { Grid } from '@mui/material';
@@ -15,9 +16,11 @@ export const AddUserForm = ({ closeModal, addNewUser }: AddUserFormProps) => {
 
   return (
     <>
-      <h2 style={{ margin: 'auto', width: 'fit-content' }}>{' ADD USER '}</h2>
+      <Typography sx={{ textAlign: 'center' }} variant={'h4'} gutterBottom>
+        {' ADD USER '}
+      </Typography>
       <form onSubmit={handleSubmit(submitHandler)}>
-        <Grid container spacing={2}>
+        <Grid sx={{ margin: '20px auto' }} container spacing={2}>
           <Grid item md={6}>
             <FormInputText
               name={'firstName'}
