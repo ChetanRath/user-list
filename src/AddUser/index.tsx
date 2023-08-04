@@ -105,7 +105,7 @@ export const AddUserForm = () => {
           </Grid>
           <Grid item md={12}>
             <Button disabled={addUserDisabled()} type={'submit'} variant={'contained'}>
-              {isLoading ? 'Add' : <CircularProgress size={30} />}
+              {!isLoading ? 'Add' : <CircularProgress size={30} />}
             </Button>
           </Grid>
         </Grid>

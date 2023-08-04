@@ -8,7 +8,7 @@ const defaultValues: FormInputValues = {
   password: '',
 };
 
-const addUserController = () => {
+const useAddUserController = () => {
   const { handleSubmit, control, getValues, watch, formState } = useForm<FormInputValues>({
     defaultValues,
   });
@@ -44,4 +44,4 @@ const addUserController = () => {
   };
 };
 
-export default addUserController;
+export default useAddUserController;
